@@ -1,0 +1,19 @@
+{% extends 'ProyectoWebApp/base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if error %}
+	<p style="color: white;">{{error}}</p>
+{% endif %}
+
+<div style="background-color:#184008; margin: 10px auto; width: 50%;">
+	<form action="" method="POST" style="text-align: center; padding: 5px 5px;">
+		{% csrf_token %}
+		<table style="color: white; margin: 5px auto; padding: 1px 0px;">
+			{{form.as_table}}
+		</table>
+		<input type="submit" value="Enviar">
+	</form>
+</div>
+{% endblock content%}

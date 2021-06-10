@@ -1,0 +1,39 @@
+{% extends 'ProyectoWebApp/base.html' %}
+{% load static %}
+{% block content %}
+{% comment %} <section>
+	<div style="width: 75%; margin:auto; text-align: center; color: white">
+		<div class="dropdown">
+			<a class="btn btn-light dropdown-toggle" data-toggle="dropdown" href="#">Categorias</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">					
+				{% for categoria in categorias %}
+					<li><a tabindex="-1" href="{% url 'Categoria' categoria.id %}">{{categoria.nombre}}</a></li>
+				{% endfor %}
+			</ul>
+		</div>		
+	</div>
+</section> {% endcomment %}
+<div class="container">
+	<div style="float: right;">		
+		{% include 'carro/widget.html' %}
+	</div>
+
+	<div class="row" style="margin: 5px auto; padding: 20px;">
+		{% for producto in productos %}
+		<div class="col-sm-4" style="margin-top: 15px;">
+			<div class="card">
+				<img class="card-img-top" src="{{producto.imagen.url}}" alt="" height="175px"/>
+				<div class="card-body">
+					<h5 class="card-title">{{producto.nombre}}</h5>
+					<p class="card-text">{{producto.descripcion}}</p>
+					<div style="text-align: left">
+					Precio: {{producto.precio}}
+					</div>
+					<a href="{% url 'carro:Agregar' producto.id %}" class="btn btn-success">Agregar</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock content%}
